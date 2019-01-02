@@ -1,28 +1,58 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+
+class App extends Component{
+
+    constructor(props){
+        super(props)
+
+        this.state = {
+            eventCount : 0,
+            username : ''
+        }
+    }
+
+    increment = () => {
+        console.log(this.state.eventCount + 1);
+        this.setState({
+            eventCount: this.state.eventCount + 1,
+        })
+    }
+
+    updateUsername = (event) => {
+        console.log(event.target.value);
+        this.setState({
+            username: event.target.value,
+        })
+    }
+
+
+    render(){
+        return (
+            <div>
+                <p>
+                    There have been {this.state.eventCount} events
+                </p>
+                <p>
+                    <button onClick={this.increment}>
+                        PRESS
+                    </button>
+                </p>
+                <p>
+                    You typed: {this.state.username}
+                </p>
+                <p>
+                    <input
+                        onChange={this.updateUsername}
+                    />
+                </p>
+            </div>
+        )
+    }
+
 }
+
 
 export default App;
